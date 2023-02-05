@@ -44,6 +44,7 @@ router.post('/',   (req, res) => {
       product_name: "Basketball",
       price: 200.00,
       stock: 3,
+      category_id: 1
       tagIds: [1, 2, 3, 4]
     }
   */
@@ -110,6 +111,9 @@ router.put('/:id', async(req, res) => {
       res.status(400).json(err);
     });
 });
+
+
+
   // delete one product by its `id` value
 router.delete('/:id',async(req, res) => {
 
@@ -118,7 +122,7 @@ router.delete('/:id',async(req, res) => {
     {
       where: {id:req.params.id}
     })
-      res.status(200).json("Product  with id :"+ req.params.id+ "is deleted");
+      res.status(200).json("Product  with id :"+ req.params.id+ " is deleted");
       
     } catch (err) {
       res.status(500).json(err);

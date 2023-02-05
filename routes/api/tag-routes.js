@@ -13,6 +13,9 @@ router.get('/', async(req, res) => {
 }
   
 });
+
+
+
  // find a single tag by its `id`
   // be sure to include its associated Product data
 router.get('/:id', async(req, res) => {
@@ -28,11 +31,14 @@ router.get('/:id', async(req, res) => {
  
 
  // create a new tag
+ //{tag_name: New Tag }
+  
+
 router.post('/', 
   async(req, res) => {
     try {
-      const tags = await Tag.create(req.params.id,{include:Product})
-      res.status(200).json(tags);
+      const tags = await Tag.create({tag_name: req.body.tag_name})
+      res.status(200).json( "a new tag with name :" + req.body.tag_name + " has been created");
     }
     catch (err) {
       res.status(500).json(err);
@@ -40,12 +46,37 @@ router.post('/',
       
     });
 
-router.put('/:id', (req, res) => {
-  // update a tag's name by its `id` value
-});
 
-router.delete('/:id', (req, res) => {
-  // delete on tag by its `id` value
+// update a tag's name by its `id` value
+//{tag_name:  Very New Tag }
+router.put('/:id', async(req, res) => {
+  try{ const tags = await Tag.update({
+   tag_name: req.body.tag_name
+  },
+  {
+    where: { id:req.params.id}
+  })
+    res.status(200).json("tag with id: " + req.params.id + " is updated and has name : " +req.body.tag_name);
+    
+  }catch(err)
+   {
+    res.status(500).json(err);
+  }
+});
+ // delete on tag by its `id` value
+router.delete('/:id', async(req, res) => {
+
+  try{ 
+  const categories = await Tag.destroy(
+    {
+      where: {id:req.params.id}
+    })
+      res.status(200).json("category with id :"+ req.params.id+ "  is deleted");
+      
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  
 });
 
 module.exports = router;
