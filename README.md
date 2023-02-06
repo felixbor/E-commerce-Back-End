@@ -41,10 +41,13 @@ npm dotenv
 
 
   ## Video
+  [Link to video](https://youtu.be/2ZPRbwBYylA)
   
   ## Questions
   Please contact me using the following links:
+
   [GitHub](https://github.com/felixbor)   
+
 
   [Email: ](mailto:felixbor@gmail.com)
   
